@@ -5,7 +5,8 @@
     <router-link v-if="userLoggedIn" @click.prevent="signout" exact-active-class="no class"
       :to="{ name: 'RecipesList'}">Signout |</router-link>
     <router-link :to="{ name: 'RecipesList'}">Recipes List |</router-link>
-    <router-link :to="{ name: 'CreateRecipe'}">Create a New Recipe |</router-link>
+    <router-link v-if="userLoggedIn"
+     :to="{ name: 'CreateRecipe'}">Create a New Recipe |</router-link>
     <a v-if="userLoggedIn"
       exact-active-class="no class">Hi there {{ user_name }}</a>
 
