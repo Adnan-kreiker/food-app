@@ -86,6 +86,9 @@ export default {
 };
 </script>
 <style scoped>
+form {
+  margin-top: 30px;
+}
 .pending {
   cursor: wait;
 }

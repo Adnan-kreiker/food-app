@@ -33,7 +33,7 @@ export default {
       },
       reg_in_submission: false,
       reg_show_alert: false,
-      background_color: 'blue',
+      background_color: 'rgb(1,253,250)',
       reg_alert_msg: 'Please wait! We are logging you in.',
     };
   },
@@ -41,7 +41,7 @@ export default {
     async login(values) {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
-      this.background_color = 'blue';
+      this.background_color = 'rgb(1,253,250)';
       this.reg_alert_msg = 'Please wait! We are logging you in.';
       try {
         await this.$store.dispatch('login', values);
@@ -62,6 +62,8 @@ export default {
 
 </script>
 
-<style>
-
+<style scoped>
+form{
+  margin-top: 30px;
+}
 </style>

@@ -9,7 +9,7 @@ import store from '../store';
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: Login,
   },
@@ -27,7 +27,7 @@ const routes = [
     component: CreateRecipe,
   },
   {
-    path: '/recipes-list',
+    path: '/',
     name: 'RecipesList',
     component: RecipesList,
   },

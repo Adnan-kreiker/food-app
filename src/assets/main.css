@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap");
 
 /* variables */
 :root {
@@ -11,7 +11,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   color: var(--primary);
 }
 body {
@@ -22,22 +22,23 @@ body {
   overflow: hidden; */
   justify-content: center;
   background: #fafafa;
-  text-align: center;
 }
 
-
 /* buttons */
-button, .btn { 
-  background: var(--secondary);
+button,
+.btn {
+  background: rgba(17, 184, 103, 0.8);
   border-radius: 8px;
   border: 0;
   padding: 8px 12px;
   font-weight: bold;
   cursor: pointer;
   display: inline-block;
+  color: white;
 }
-button:hover, .btn:hover {
-  background: var(--primary);
+button:hover,
+.btn:hover {
+  background: rgba(17, 184, 103, 1);
   color: white;
 }
 
@@ -47,11 +48,12 @@ form {
   margin: 0 auto;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 1px 2px 3px rgba(50,50,50,0.05);
-  border: 1px solid  var(--secondary);
+  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.5);
+  border: 2px solid var(--secondary);
   background: white;
 }
-input, textarea {
+input,
+textarea {
   border: 0;
   border: 2px solid var(--secondary);
   padding: 10px;
@@ -74,7 +76,7 @@ input, textarea {
   height: 30;
   border-radius: 10px;
   text-align-last: center;
-  vertical-align: middle; 
+  vertical-align: middle;
   margin: 10px;
   padding: 20px;
 }
@@ -87,7 +89,7 @@ label {
 }
 
 .no-class {
-  color: var(--primary) ;
+  color: var(--primary);
 }
 #alert p {
   color: white;
