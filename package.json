@@ -1,10 +1,12 @@
-{  "scripts": {
-  "serve": "vue-cli-service serve",
-  "build": "vue-cli-service build",
-  "lint": "vue-cli-service lint"
-},
+{
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
   "dependencies": {
     "@vee-validate/rules": "^4.5.0-alpha.1",
+    "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
     "firebase": "^8.7.1",
     "vee-validate": "^4.4.6",
@@ -27,6 +29,8 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^7.0.0",
+    "sass": "^1.37.5",
+    "sass-loader": "^10.1.1",
     "typescript": "~3.9.3",
     "vue-jest": "^5.0.0-0"
   }

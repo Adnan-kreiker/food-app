@@ -1,18 +1,18 @@
 <template>
   <form @submit.prevent="handleSubmit">
-      <h4>Create a New Recipe</h4>
-      <label>Recipe</label>
-      <input type="text" required placeholder="recipe's name" v-model="name">
-      <label>Description</label>
-      <textarea required placeholder="recipe's description" v-model="description"></textarea>
-      <label>Upload an image for your recipe</label>
-      <input type="file" @change="handleChange($event)">
-      <div class="error"> {{ file_error}}</div>
-      <button v-if="!reg_in_submission">Create</button>
-      <button v-else class="pending">Uploading</button>
-      <div id="alert" v-if="reg_show_alert" :style="{ 'background-color': background_color}">
+    <h4>Create a New Recipe</h4>
+    <label>Recipe</label>
+    <input type="text" required placeholder="recipe's name" v-model="name" />
+    <label>Description</label>
+    <textarea required placeholder="recipe's description" v-model="description"></textarea>
+    <label>Upload an image for your recipe</label>
+    <input type="file" @change="handleChange($event)" />
+    <div class="error">{{ file_error }}</div>
+    <button v-if="!reg_in_submission">Create</button>
+    <button v-else class="pending">Uploading</button>
+    <div id="alert" v-if="reg_show_alert" :style="{ 'background-color': background_color }">
       <p>{{ reg_alert_msg }}</p>
-      </div>
+    </div>
   </form>
 </template>
 
@@ -101,5 +101,4 @@ form {
   margin: 10px;
   padding: 20px;
 }
-
 </style>

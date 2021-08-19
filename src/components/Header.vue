@@ -1,19 +1,23 @@
 <template>
-<header>
-  <div id="nav">
-    <router-link :to="{ name: 'RecipesList'}">Food<span>Hub</span></router-link>
-    <router-link v-if="!userLoggedIn" to="/login">Login</router-link>
-    <router-link v-if="!userLoggedIn" to="/register">Register</router-link>
-    <router-link v-if="userLoggedIn"
-     :to="{ name: 'CreateRecipe'}">Create a New Recipe</router-link>
-    <a v-if="userName"
-      exact-active-class="no class">Hi there {{ userName }}</a>
-    <router-link v-if="userLoggedIn" class="sign-out"
-     @click.prevent="signout" exact-active-class="no class"
-      :to="{ name: 'RecipesList'}">Signout</router-link>
-  </div>
-</header>
-
+  <header>
+    <div id="nav">
+      <router-link :to="{ name: 'HeroSection' }">Food<span>Hub</span></router-link>
+      <router-link v-if="!userLoggedIn" to="/login">Login</router-link>
+      <router-link v-if="!userLoggedIn" to="/register">Register</router-link>
+      <router-link v-if="userLoggedIn" :to="{ name: 'CreateRecipe' }"
+        >Create a New Recipe</router-link
+      >
+      <a v-if="userLoggedIn" exact-active-class="no class">Hi there {{ userName }}</a>
+      <router-link
+        v-if="userLoggedIn"
+        class="sign-out"
+        @click.prevent="signout"
+        exact-active-class="no class"
+        :to="{ name: 'HeroSection' }"
+        >Signout</router-link
+      >
+    </div>
+  </header>
 </template>
 
 <script>
@@ -36,23 +40,22 @@ export default {
     signout() {
       this.$store.dispatch('signout');
       if (this.$route.meta.requiresAuth) {
-        this.$router.push({ name: 'RecipesList' });
+        this.$router.push({ name: 'HeroSection' });
       }
     },
   },
   computed: {
     ...mapState(['userLoggedIn', 'userName']),
   },
-
 };
 </script>
 
 <style scoped>
-.sign-out{
+.sign-out {
   float: right;
 }
 header {
-    background: linear-gradient(135deg, rgb(17,184,103) 60%, cyan);
+  background: linear-gradient(135deg, rgb(17, 184, 103) 60%, cyan);
 }
 #nav {
   padding: 30px;
@@ -78,6 +81,5 @@ span {
   border-radius: 20px;
   color: white;
   text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
-
 }
 </style>

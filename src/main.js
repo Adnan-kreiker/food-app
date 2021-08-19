@@ -5,6 +5,7 @@ import store from './store';
 import './assets/main.css';
 import VeeValidatePlugin from './includes/validation';
 import { auth } from './includes/firebase';
+import 'animate.css';
 
 let app;
 auth.onAuthStateChanged(() => {
@@ -13,7 +14,6 @@ auth.onAuthStateChanged(() => {
     app.use(store);
     app.use(router);
     app.use(VeeValidatePlugin);
-
     app.mount('#app');
   }
 });

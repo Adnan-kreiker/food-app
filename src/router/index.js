@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/Login.vue';
+import HeroSection from '../views/HeroSection.vue';
 import Register from '../views/Register.vue';
 import CreateRecipe from '../views/CreateRecipe.vue';
-import RecipesList from '../views/RecipesList.vue';
-import RecipeDetails from '../components/RecipeDetails.vue';
-import AppHeader from '../components/Header.vue';
+import RecipeDetails from '../views/RecipeDetails.vue';
 import store from '../store';
 
 const routes = [
@@ -12,6 +11,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/',
+    name: 'HeroSection',
+    component: HeroSection,
   },
   {
     path: '/register',
@@ -27,20 +31,10 @@ const routes = [
     component: CreateRecipe,
   },
   {
-    path: '/',
-    name: 'RecipesList',
-    component: RecipesList,
-  },
-  {
     path: '/recipe-details/:id',
     props: true,
     name: 'RecipeDetails',
     component: RecipeDetails,
-  },
-  {
-    path: '/header',
-    name: 'Header',
-    component: AppHeader,
   },
   {
     path: '/:catchAll(.*)*',

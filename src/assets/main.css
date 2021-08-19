@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
 
 /* variables */
 :root {
@@ -11,7 +11,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   color: var(--primary);
 }
 body {
@@ -25,7 +25,7 @@ body {
 }
 
 /* buttons */
-button,
+/* button,
 .btn {
   background: rgba(17, 184, 103, 0.8);
   border-radius: 8px;
@@ -40,18 +40,10 @@ button:hover,
 .btn:hover {
   background: rgba(17, 184, 103, 1);
   color: white;
-}
+} */
 
 /* forms */
-form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.5);
-  border: 2px solid var(--secondary);
-  background: white;
-}
+
 input,
 textarea {
   border: 0;
@@ -61,15 +53,11 @@ textarea {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 20px auto;
+  margin-top: 20px;
 }
 
 /* error text */
-.error {
-  color: var(--warning);
-  font-size: 14px;
-  margin: 16px 0;
-}
+
 .success p {
   background: rgb(77, 218, 77);
   color: white;
