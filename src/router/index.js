@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/Login.vue';
 import HeroSection from '../views/HeroSection.vue';
@@ -45,6 +46,22 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  // eslint-disable-next-line no-unused-vars
+  scrollBehavior(to, from, savedPosition) {
+    //   // eslint-disable-line
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      };
+    }
+    // if (savedPosition) {
+    //   return savedPosition;
+    // }
+    return {
+      top: 0,
+    };
+  },
 });
 
 router.beforeEach((to, from, next) => {

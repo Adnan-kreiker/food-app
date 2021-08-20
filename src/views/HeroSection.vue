@@ -1,25 +1,34 @@
 <template>
   <div>
-    <section class="masthead" role="img" aria-label="Image Description">
+    <section id="main" class="masthead" role="img" aria-label="Image Description">
       <h1>Food<span>Hub</span></h1>
       <p>
         Get inspired by our nutritious flavour-packed recipes, <br />
         add your own delicious recipes and share them with the world.
       </p>
-      <button class="animate__animated animate__fadeInLeft">
-        Browse Recipes
-      </button>
+      <router-link :to="{ path: '/', hash: '#recipe' }"
+        ><button class="">
+          Browse Recipes
+        </button></router-link
+      >
     </section>
-    <RecipesList />
+    <section>
+      <About />
+    </section>
+    <section class="recipe-list" id="recipeSection">
+      <RecipesList />
+    </section>
   </div>
 </template>
 
 <script>
 import RecipesList from '@/components/RecipesList.vue';
+import About from '@/components/About.vue';
 
 export default {
   components: {
     RecipesList,
+    About,
   },
 };
 </script>
@@ -48,10 +57,11 @@ export default {
   position: absolute;
   top: 40%;
 }
-.masthead > button {
+
+.masthead button {
   margin-left: 30px;
   position: absolute;
-  top: 80%;
+  top: 70%;
 }
 .masthead > p {
   // /* background: linear-gradient() rgba(38,38,38, 0.6) !important; */
@@ -82,7 +92,7 @@ p {
 }
 
 button {
-  background: rgb(17, 184, 103) !important;
+  background: rgb(17, 184, 103);
   transition: background ease 0.25s;
   border-radius: 19px;
   display: inline-block;
@@ -98,11 +108,7 @@ button {
   -moz-appearance: none;
 }
 button:hover {
-  background: #63b6b8;
-}
-button:focus {
-  outline: 1px solid #fff;
-  outline-offset: -4px;
+  background: rgb(14, 128, 72);
 }
 span {
   background: rgb(17, 184, 103) !important;
@@ -113,5 +119,8 @@ span {
 .recipe-text {
   color: rgb(17, 184, 103);
   margin: 30px 0 0 30px;
+}
+.recipe-list {
+  min-height: 100vh;
 }
 </style>

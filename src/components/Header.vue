@@ -42,6 +42,11 @@ export default {
       if (this.$route.meta.requiresAuth) {
         this.$router.push({ name: 'HeroSection' });
       }
+      const notification = {
+        type: 'success',
+        text: 'You Signed out!',
+      };
+      this.$store.dispatch('AddNotification', notification);
     },
   },
   computed: {
@@ -55,7 +60,8 @@ export default {
   float: right;
 }
 header {
-  background: linear-gradient(135deg, rgb(17, 184, 103) 60%, cyan);
+  /* background: linear-gradient(135deg, rgb(17, 184, 103) 60%, cyan); */
+  background: linear-gradient(135deg, #41b883 60%, #35495e);
 }
 #nav {
   padding: 30px;

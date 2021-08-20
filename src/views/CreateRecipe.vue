@@ -101,4 +101,17 @@ form {
   margin: 10px;
   padding: 20px;
 }
+form {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 10px 30px 30px 30px;
+  border-radius: 8px;
+  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.5);
+  border: 2px solid var(--secondary);
+  background: white;
+}
 </style>

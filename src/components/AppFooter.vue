@@ -1,10 +1,12 @@
 <template>
   <footer class="footer-distributed">
     <div class="footer-left">
-      <h3>Food<span>Hub</span></h3>
+      <router-link :to="{ path: '/', hash: '#nav' }"
+        ><h3>Food<span>Hub</span></h3></router-link
+      >
 
       <p class="footer-links">
-        <a href="#">Home</a>
+        <router-link :to="{ hash: '#nav' }">Home</router-link>
         ·
         <a href="#">Blog</a>
         ·
@@ -33,7 +35,8 @@ export default {};
 
 <style lang="scss" scoped>
 .footer-distributed {
-  background: linear-gradient(135deg, rgb(17, 184, 103) 60%, cyan);
+  background: linear-gradient(135deg, #35495e 60%, #41b883);
+
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;

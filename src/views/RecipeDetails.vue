@@ -1,16 +1,20 @@
 <template>
-  <main v-if="recipe.coverUrl">
+  <main>
     <div class="recipe-details">
       <div class="cover grid-pic ">
-        <img :src="recipe.coverUrl" />
+        <img v-if="!isLoading" :src="recipe.coverUrl" />
+        <Skeletor v-else-if="isLoading" height="450px" />
       </div>
       <div class="recipe-info gird-details">
-        <h2 class="recipe-name">{{ recipe.name }}</h2>
-        <p v-if="!edit" class="name">by {{ recipe.userName }}</p>
-        <p v-if="!edit" class="description">
-          <strong> Description: </strong> <br />
-          {{ recipe.description }}
-        </p>
+        <div v-if="!isLoading">
+          <h2 class="recipe-name">{{ recipe.name }}</h2>
+          <p v-if="!edit" class="name">by {{ recipe.userName }}</p>
+          <p v-if="!edit" class="description">
+            <strong> Description: </strong> <br />
+            {{ recipe.description }}
+          </p>
+        </div>
+        <Skeletor v-else-if="isLoading" height="280" />
         <div v-if="edit">
           <label>Edit the name of your recipe</label>
           <input type="text" v-model="modified_name" />
@@ -50,16 +54,41 @@ export default {
       modified_name: '',
       modified_description: '',
       user: '',
+      isLoading: true,
     };
   },
+  // async beforeRouteEnter(to, from, next) {
+  //   const documentRef = await recipesCollection.doc(to.params.id);
+  //   next((vm) => {
+  //     documentRef.onSnapshot(
+  //       (doc) => {
+  //         if (doc.data()) {
+  //           // eslint-disable-next-line no-param-reassign
+  //           vm.recipe = { ...doc.data(), id: doc.id };
+  //           // eslint-disable-next-line no-param-reassign
+  //           vm.modified_description = doc.data().description;
+  //           // eslint-disable-next-line no-param-reassign
+  //           vm.modified_name = doc.data().name;
+  //         }
+  //       },
+  //       (err) => {
+  //         console.log(err.message);
+  //         // eslint-disable-next-line no-param-reassign
+  //         vm.recipe = null;
+  //       },
+  //     );
+  //   });
+  // },
   created() {
     const documentRef = recipesCollection.doc(this.$route.params.id);
+    this.isLoading = true;
     documentRef.onSnapshot(
       (doc) => {
         if (doc.data()) {
           this.recipe = { ...doc.data(), id: doc.id };
           this.modified_description = doc.data().description;
           this.modified_name = doc.data().name;
+          this.isLoading = false;
         }
       },
       (err) => {

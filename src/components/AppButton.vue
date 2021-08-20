@@ -15,6 +15,10 @@ export default {
       type: String,
       default: 'gray',
     },
+    cursor: {
+      type: String,
+      default: 'pointer',
+    },
   },
   data() {
     return {
@@ -24,6 +28,7 @@ export default {
   computed: {
     cssVars() {
       return {
+        cursor: this.cursor,
         '--bg-color': this.color,
       };
     },
@@ -43,10 +48,12 @@ button {
   line-height: 1;
   margin: 0.5em;
   padding: 1em 1em;
+  cursor: var(--cursor);
 }
 button:hover,
 button:focus {
   box-shadow: inset 8em 0 0 0 var(--bg-color);
+  cursor: var(--cursor);
 }
 button {
   color: var(--bg-color);

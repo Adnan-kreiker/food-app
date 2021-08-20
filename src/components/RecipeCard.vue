@@ -8,7 +8,7 @@
         @mouseleave="handleMouseLeave"
         ref="card"
       >
-        <div class="card animate__animated animate__fadeIn animate__delay-1s" :style="cardStyle">
+        <div class="card" :style="cardStyle">
           <div class="card-bg" :style="{ backgroundImage: 'url(' + recipe.coverUrl + ')' }"></div>
           <div class="card-info">
             <slot name="header"
@@ -101,10 +101,6 @@ $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
 $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-
-.animate__animated.animate__fadeIn {
-  --animate--duration: 1.5s;
-}
 
 body {
   margin: 40px 0;

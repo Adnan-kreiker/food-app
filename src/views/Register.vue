@@ -24,14 +24,8 @@
       <vee-field type="password" name="confirm_password" placeholder="Confirm Password" />
       <ErrorMessage class="error" name="confirm_password" />
     </div>
-    <AppButton
-      class="reg-btn"
-      v-if="!reg_in_submission"
-      :color="'rgb(17, 184, 103)'"
-      :text="'Submit'"
-    />
-    <button v-else class="pending">Registering</button>
-    <div id="alert" v-if="reg_show_alert" :style="{ 'background-color': background_color }">
+    <AppButton class="reg-btn" :color="color" :text="text" :cursor="cursor" />
+    <div id="alert" v-if="reg_show_alert">
       <p>{{ reg_alert_msg }}</p>
     </div>
   </vee-form>
@@ -55,27 +49,41 @@ export default {
       },
       reg_in_submission: false,
       reg_show_alert: false,
-      background_color: 'blue',
-      reg_alert_msg: 'Please wait! Your account is being created.',
+      reg_alert_msg: '',
+      color: 'rgb(77, 218, 77)',
+      text: 'Register',
+      cursor: 'pointer',
     };
   },
   methods: {
     async register(values) {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
-      this.background_color = 'blue';
-      this.reg_alert_msg = 'Please wait! Your account is being created.';
+      this.color = 'rgb(1,253,250)';
+      this.reg_alert_msg = '';
+      this.text = 'Please wait!';
+      this.cursor = 'wait';
       try {
         await this.$store.dispatch('register', values);
       } catch (error) {
         this.reg_in_submission = false;
-        this.background_color = 'red';
-        this.reg_alert_msg = 'An unexpected error occured. Please try again later.';
+        this.color = 'red';
+        this.reg_alert_msg = error.message;
+        this.text = 'Try again';
+        this.cursor = 'pointer';
         return;
       }
       this.reg_in_submission = false;
-      this.background_color = 'rgb(77, 218, 77)';
-      this.reg_alert_msg = 'Success! Your account has been created.';
+      this.color = 'rgb(77, 218, 77)';
+      this.reg_alert_msg = '';
+      const register = () => {
+        const notification = {
+          type: 'success',
+          text: 'Success! Your account has been created.',
+        };
+        this.$store.dispatch('AddNotification', notification);
+      };
+      setTimeout(register, 500);
       this.$router.push({ name: 'HeroSection' });
     },
   },

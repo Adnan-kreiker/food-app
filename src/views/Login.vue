@@ -13,12 +13,12 @@
       </div>
       <AppButton
         class="login-btn"
-        v-if="!reg_in_submission"
-        :color="'rgb(17, 184, 103)'"
-        :text="'login'"
+        :color="color"
+        :text="text"
+        :disabled="reg_in_submission"
+        :cursor="cursor"
       />
-      <button v-else class="pending">Logging in</button>
-      <div id="alert" v-if="reg_show_alert" :style="{ 'background-color': background_color }">
+      <div id="alert" v-if="reg_show_alert">
         <p>{{ reg_alert_msg }}</p>
       </div>
     </vee-form>
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import AppButton from '@/components/AppButton.vue';
 
 export default {
@@ -41,30 +40,51 @@ export default {
       },
       reg_in_submission: false,
       reg_show_alert: false,
-      background_color: 'rgb(1,253,250)',
-      reg_alert_msg: 'Please wait! We are logging you in.',
+      reg_alert_msg: '',
+      text: 'login',
+      color: 'rgb(17, 184, 103)',
+      cursor: 'pointer',
     };
   },
   methods: {
     async login(values) {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
-      this.background_color = 'rgb(1,253,250)';
-      this.reg_alert_msg = 'Please wait! We are logging you in.';
+      this.color = 'rgb(1,253,250)';
+      this.reg_alert_msg = '';
+      this.text = 'Please wait!';
+      this.cursor = 'wait';
       try {
         await this.$store.dispatch('login', values);
       } catch (error) {
         console.log(error.message);
         this.background_color = 'red';
-        this.reg_alert_msg = 'An unexpected error occured. Please try again later.';
+        this.reg_alert_msg = error.message;
+        this.text = 'Try again';
+        this.reg_in_submission = false;
+        this.color = 'red';
+        this.cursor = 'pointer';
         return;
       }
       this.reg_in_submission = false;
       this.background_color = 'rgb(77,218,77)';
-      this.reg_alert_msg = 'Success! You logged in successfully.';
+      this.reg_alert_msg = '';
+      this.cursor = 'pointer';
+
+      const login = () => {
+        const notification = {
+          type: 'success',
+          text: 'Success! You logged in successfully.',
+        };
+        this.$store.dispatch('AddNotification', notification);
+      };
+      setTimeout(login, 500);
+
       this.$router.push({ name: 'HeroSection' });
     },
-    ...mapState(['userLoggedIn']),
+  },
+  beforeUnmount() {
+    clearTimeout();
   },
 };
 </script>
@@ -74,13 +94,13 @@ export default {
   margin: 0px;
 }
 #alert p {
-  color: white;
-  height: 30;
+  color: red;
+  /* height: 30; */
   border-radius: 20px;
   text-align-last: center;
   vertical-align: middle;
-  margin: 10px;
-  padding: 20px;
+  /* margin: 10px;
+  padding: 20px; */
 }
 #alert {
   border-radius: 20px;

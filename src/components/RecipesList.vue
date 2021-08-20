@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1 class="recipe-text">Recipes</h1>
+    <h1 id="recipe" class="recipe-text">Recipes</h1>
     <div class="recipes">
       <recipe-card v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
     </div>
@@ -17,6 +17,9 @@ export default {
       recipes: [],
       error: null,
     };
+  },
+  unmounted() {
+    console.log('unmounted');
   },
   components: {
     RecipeCard,
@@ -55,7 +58,7 @@ h1 {
   font-size: 11vmin;
   letter-spacing: 0.03em;
   line-height: 1;
-  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  /* text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8); */
   margin-bottom: 37px;
 }
 .recipe-text {
