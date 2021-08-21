@@ -1,25 +1,40 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form :class="{ pending: reg_in_submission }" @submit.prevent="handleSubmit">
     <h4>Create a New Recipe</h4>
-    <label>Recipe</label>
-    <input type="text" required placeholder="recipe's name" v-model="name" />
-    <label>Description</label>
-    <textarea required placeholder="recipe's description" v-model="description"></textarea>
-    <label>Upload an image for your recipe</label>
-    <input type="file" @change="handleChange($event)" />
+    <div>
+      <label>Recipe</label>
+      <input type="text" required placeholder="Recipe's name" v-model="name" />
+    </div>
+    <div>
+      <label>Description</label>
+      <textarea required placeholder="Recipe's description" v-model="description"></textarea>
+    </div>
+    <div>
+      <label>Upload an image for your recipe</label>
+      <input type="file" @change="handleChange($event)" />
+    </div>
     <div class="error">{{ file_error }}</div>
-    <button v-if="!reg_in_submission">Create</button>
-    <button v-else class="pending">Uploading</button>
-    <div id="alert" v-if="reg_show_alert" :style="{ 'background-color': background_color }">
+    <AppButton
+      :color="color"
+      :text="text"
+      :disabled="reg_in_submission"
+      :cursor="cursor"
+      class="button"
+    />
+    <div id="alert" v-if="reg_show_alert && reg_alert_msg">
       <p>{{ reg_alert_msg }}</p>
     </div>
   </form>
 </template>
 
 <script>
+import AppButton from '@/components/AppButton.vue';
 import { auth, db, storage } from '../includes/firebase';
 
 export default {
+  components: {
+    AppButton,
+  },
   data() {
     return {
       name: '',
@@ -32,8 +47,9 @@ export default {
       url: null,
       reg_in_submission: false,
       reg_show_alert: false,
-      background_color: 'blue',
-      reg_alert_msg: 'Please wait! the image is being uploaded.',
+      text: 'Create recipe',
+      color: 'rgb(17, 184, 103)',
+      cursor: 'pointer',
     };
   },
   methods: {
@@ -41,8 +57,10 @@ export default {
       if (this.file) {
         this.reg_show_alert = true;
         this.reg_in_submission = true;
-        this.background_color = 'blue';
-        this.reg_alert_msg = 'Please wait! the file is being uploaded.';
+        this.color = 'rgb(1,253,250)';
+        this.reg_alert_msg = null;
+        this.text = 'Please wait!';
+        this.cursor = 'wait';
         const user = auth.currentUser;
         this.filePath = `recipes/${user.uid}/${this.file.name}`;
         const storageRef = storage.ref(this.filePath);
@@ -58,18 +76,28 @@ export default {
             coverUrl: this.url,
             filePath: this.filePath,
           });
-        } catch (err) {
-          this.error = err.message;
+        } catch (error) {
           this.reg_in_submission = false;
-          this.background_color = 'red';
-          this.reg_alert_msg = 'An unexpected error occured. Please try again later.';
+          this.reg_alert_msg = error.message;
+          this.text = 'Try again';
+          this.reg_in_submission = false;
+          this.color = 'red';
+          this.cursor = 'pointer';
+
           return;
         }
         this.reg_in_submission = false;
-        this.background_color = 'rgb(77, 218, 77)';
-        this.reg_alert_msg = 'Success! Your filed has been loaded.';
+        this.color = 'rgb(77,218,77)';
+        this.reg_alert_msg = null;
+        this.cursor = 'pointer';
         this.name = '';
         this.description = '';
+        this.text = 'Create another recipe';
+        const notification = {
+          type: 'success',
+          text: 'Success! Your Recipe has been created.',
+        };
+        this.$store.dispatch('AddNotification', notification);
       }
     },
     handleChange($event) {
@@ -92,8 +120,11 @@ form {
 .pending {
   cursor: wait;
 }
+h4 {
+  padding-top: 20px;
+}
 #alert p {
-  color: white;
+  color: red;
   height: 30;
   border-radius: 20px;
   text-align-last: center;
@@ -110,8 +141,17 @@ form {
   margin: 30px auto;
   padding: 10px 30px 30px 30px;
   border-radius: 8px;
-  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.5);
+  box-shadow: 1px 2px 3px rgba(55, 79, 107, 0.5);
   border: 2px solid var(--secondary);
   background: white;
+}
+.button {
+  margin: 0;
+}
+form > div {
+  margin: 10px 0;
+}
+p {
+  height: auto;
 }
 </style>

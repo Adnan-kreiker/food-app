@@ -60,7 +60,6 @@ export default {
   float: right;
 }
 header {
-  /* background: linear-gradient(135deg, rgb(17, 184, 103) 60%, cyan); */
   background: linear-gradient(135deg, #41b883 60%, #35495e);
 }
 #nav {
@@ -83,7 +82,6 @@ header {
   color: yellow;
 }
 span {
-  background: rgb(17, 184, 103) !important;
   border-radius: 20px;
   color: white;
   text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);

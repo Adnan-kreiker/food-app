@@ -5,35 +5,41 @@
         <img v-if="!isLoading" :src="recipe.coverUrl" />
         <Skeletor v-else-if="isLoading" height="450px" />
       </div>
-      <div class="recipe-info gird-details">
-        <div v-if="!isLoading">
-          <h2 class="recipe-name">{{ recipe.name }}</h2>
-          <p v-if="!edit" class="name">by {{ recipe.userName }}</p>
-          <p v-if="!edit" class="description">
-            <strong> Description: </strong> <br />
-            {{ recipe.description }}
-          </p>
-        </div>
-        <Skeletor v-else-if="isLoading" height="280" />
-        <div v-if="edit">
-          <label>Edit the name of your recipe</label>
-          <input type="text" v-model="modified_name" />
-          <label>Edit the description</label>
-          <textarea v-model="modified_description" cols="30" rows="10"></textarea>
+      <div v-if="!isLoading" class="recipe-info gird-details">
+        <transition name="slide-fade" mode="out-in">
+          <div v-if="!edit">
+            <h2 class="recipe-name">{{ recipe.name }}</h2>
+            <p v-if="!edit" class="name">by {{ recipe.userName }}</p>
+            <p v-if="!edit" class="description">
+              <strong> Description: </strong> <br />
+              {{ recipe.description }}
+            </p>
+          </div>
+          <div v-else-if="edit">
+            <label>Edit the name of your recipe</label>
+            <input type="text" v-model="modified_name" />
+            <label>Edit the description</label>
+            <textarea v-model="modified_description" cols="30" rows="10"></textarea>
+          </div>
+        </transition>
+        <div v-if="ownership" class="btn-section">
+          <AppButton
+            v-if="ownership & !edit"
+            :color="'red'"
+            :text="'Delete'"
+            @click="handleDelete"
+          />
+          <AppButton v-if="ownership & !edit" :color="'gray'" :text="'Edit'" @click="edit = true" />
+          <AppButton v-if="edit" :color="'red'" :text="'Cancel'" @click="edit = false" />
+          <AppButton
+            @click.prevent="handleEdit"
+            v-if="edit"
+            :text="'Submit'"
+            :color="'rgb(17, 184, 103)'"
+          />
         </div>
       </div>
-
-      <div class="btn-section">
-        <AppButton v-if="ownership & !edit" :color="'red'" :text="'Delete'" @click="handleDelete" />
-        <AppButton v-if="ownership & !edit" :color="'gray'" :text="'Edit'" @click="edit = true" />
-        <AppButton v-if="edit" :color="'red'" :text="'Cancel'" @click="edit = false" />
-        <AppButton
-          v-if="edit"
-          @click.prevent="handleEdit"
-          :text="'Submit'"
-          :color="'rgb(17, 184, 103)'"
-        />
-      </div>
+      <Skeletor v-else-if="isLoading" height="280" />
     </div>
   </main>
 </template>
@@ -112,7 +118,12 @@ export default {
 
       await recipeRef.delete();
       await recipesCollection.doc(this.$route.params.id).delete();
-      this.$router.push({ name: 'RecipesList' });
+      this.$router.push({ path: '/', hash: '#recipe' });
+      const notification = {
+        type: 'success',
+        text: 'Recipe Deleted !',
+      };
+      this.$store.dispatch('AddNotification', notification);
     },
     handleEdit() {
       if (!this.modified_name) {
@@ -218,5 +229,27 @@ textarea {
   width: 100%;
   box-sizing: border-box;
   height: 100px;
+}
+// .fade-enter-active,
+// .fade-leave-active {
+//   transition: opacity 0.45s ease;
+// }
+
+// .fade-enter-from,
+// .fade-leave-active {
+//   opacity: 0;
+// }
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>

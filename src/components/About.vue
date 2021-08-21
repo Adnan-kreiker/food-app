@@ -19,8 +19,9 @@ export default {};
 
 <style lang="scss" scoped>
 section {
-  padding: 50px 30px;
-  background: rgb(255, 196, 161);
+  padding: 90px 30px 0;
+  background: rgba(255, 195, 161, 0.705);
+  height: 70vh;
 }
 .container {
   display: flex;

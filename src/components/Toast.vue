@@ -45,8 +45,8 @@ export default {
 .success {
   background: linear-gradient(135deg, rgb(17, 184, 103) 60%, cyan);
 }
-.sign-out {
-  background: linear-gradient(135deg, rgb(32, 109, 114) 60%, rgb(187, 226, 10));
+.warning {
+  background: linear-gradient(135deg, rgb(255, 0, 0) 40%, rgb(230, 120, 106));
 }
 .pending {
   background: blue;

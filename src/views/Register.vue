@@ -25,7 +25,7 @@
       <ErrorMessage class="error" name="confirm_password" />
     </div>
     <AppButton class="reg-btn" :color="color" :text="text" :cursor="cursor" />
-    <div id="alert" v-if="reg_show_alert">
+    <div id="alert" v-if="reg_alert_msg">
       <p>{{ reg_alert_msg }}</p>
     </div>
   </vee-form>
@@ -115,5 +115,8 @@ form {
   box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.5);
   border: 2px solid var(--secondary);
   background: white;
+}
+p {
+  height: auto;
 }
 </style>

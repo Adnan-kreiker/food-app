@@ -73,6 +73,11 @@ router.beforeEach((to, from, next) => {
   if (store.state.userLoggedIn) {
     next();
   } else {
+    const notification = {
+      type: 'warning',
+      text: 'You have to login first!',
+    };
+    store.dispatch('AddNotification', notification);
     next({ name: 'home' });
   }
 });

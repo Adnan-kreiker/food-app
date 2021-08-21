@@ -18,7 +18,7 @@
         :disabled="reg_in_submission"
         :cursor="cursor"
       />
-      <div id="alert" v-if="reg_show_alert">
+      <div id="alert" v-if="reg_alert_msg">
         <p>{{ reg_alert_msg }}</p>
       </div>
     </vee-form>
@@ -40,7 +40,7 @@ export default {
       },
       reg_in_submission: false,
       reg_show_alert: false,
-      reg_alert_msg: '',
+      reg_alert_msg: null,
       text: 'login',
       color: 'rgb(17, 184, 103)',
       cursor: 'pointer',
@@ -50,6 +50,7 @@ export default {
     async login(values) {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
+      this.reg_alert_msg = null;
       this.color = 'rgb(1,253,250)';
       this.reg_alert_msg = '';
       this.text = 'Please wait!';
@@ -58,7 +59,6 @@ export default {
         await this.$store.dispatch('login', values);
       } catch (error) {
         console.log(error.message);
-        this.background_color = 'red';
         this.reg_alert_msg = error.message;
         this.text = 'Try again';
         this.reg_in_submission = false;
@@ -67,8 +67,8 @@ export default {
         return;
       }
       this.reg_in_submission = false;
-      this.background_color = 'rgb(77,218,77)';
-      this.reg_alert_msg = '';
+      this.color = 'rgb(77,218,77)';
+      this.reg_alert_msg = null;
       this.cursor = 'pointer';
 
       const login = () => {
@@ -130,5 +130,8 @@ form {
   box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.5);
   border: 2px solid var(--secondary);
   background: white;
+}
+p {
+  height: auto;
 }
 </style>

@@ -1,19 +1,34 @@
 <template>
   <div>
-    <section id="main" class="masthead" role="img" aria-label="Image Description">
+    <section
+      id="main"
+      class="masthead animate__animated animate__fadeIn animate__slow"
+      role="img"
+      aria-label="Image Description"
+    >
       <h1>Food<span>Hub</span></h1>
       <p>
         Get inspired by our nutritious flavour-packed recipes, <br />
         add your own delicious recipes and share them with the world.
       </p>
       <router-link :to="{ path: '/', hash: '#recipe' }"
-        ><button class="">
+        ><button class="btn1">
           Browse Recipes
         </button></router-link
       >
     </section>
     <section>
       <About />
+    </section>
+    <section class="add-recipe">
+      <div class="add-container">
+        <h1>Add Your Recipe Now!</h1>
+        <p>Share your grandmother's secret recipe for chicken soup or something...</p>
+        <img src="/images/cooking-recipe.png" alt="" />
+        <router-link :to="{ name: 'CreateRecipe' }">
+          <AddFoodButton :text="'ADD YOUR RECIPE!'" class="recipe-btn" />
+        </router-link>
+      </div>
     </section>
     <section class="recipe-list" id="recipeSection">
       <RecipesList />
@@ -24,11 +39,13 @@
 <script>
 import RecipesList from '@/components/RecipesList.vue';
 import About from '@/components/About.vue';
+import AddFoodButton from '@/components/AddFoodButton.vue';
 
 export default {
   components: {
     RecipesList,
     About,
+    AddFoodButton,
   },
 };
 </script>
@@ -91,7 +108,7 @@ p {
   margin-bottom: 37px;
 }
 
-button {
+.btn1 {
   background: rgb(17, 184, 103);
   transition: background ease 0.25s;
   border-radius: 19px;
@@ -122,5 +139,57 @@ span {
 }
 .recipe-list {
   min-height: 100vh;
+}
+.add-recipe {
+  height: 100vh;
+
+  // position: relative;
+  background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.65) 100%
+    ),
+    url(/images/add-recipe.webp) no-repeat center center scroll;
+}
+.add-container {
+  display: grid;
+  width: 80vw;
+  padding: 4vw 0 0 14vw;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'h1 h1'
+    'txt img'
+    'btn img';
+  justify-items: center;
+  align-items: center;
+  transform: rotate(-6.5deg);
+}
+.add-recipe h1 {
+  justify-self: start;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
+  color: white;
+  grid-area: h1;
+  background: linear-gradient(100deg, rgba(14, 150, 84) 0%, rgba(34, 72, 14, 0.6));
+  background-size: cover;
+}
+.add-recipe img {
+  transform: rotate(3deg);
+  border-radius: 20px;
+  height: 24vw;
+  grid-area: img;
+  padding-top: 30px;
+}
+.recipe-btn {
+  grid-area: btn;
+  height: 100px;
+  width: 300px;
+}
+.add-recipe p {
+  grid-area: txt;
+  justify-self: end;
+  margin: 0px;
+  font-size: clamp(1rem, 5vw, 2rem);
+  background: linear-gradient(100deg, rgba(63, 63, 63, 0.5) 0%, rgba(112, 111, 111, 0.3));
 }
 </style>

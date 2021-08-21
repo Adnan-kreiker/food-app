@@ -70,3 +70,7 @@ label {
 .pending {
   cursor: wait;
 }
+input,
+textarea {
+  border: 2px solid #acdfc8;
+}

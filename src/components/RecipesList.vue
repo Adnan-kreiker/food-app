@@ -1,6 +1,12 @@
 <template>
   <div class="wrapper">
-    <h1 id="recipe" class="recipe-text">Recipes</h1>
+    <h1
+      id="recipe"
+      class="recipe-text animate__animated
+     animate__pulse animate__repeat-2 "
+    >
+      Our Hottest Recipes
+    </h1>
     <div class="recipes">
       <recipe-card v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
     </div>
@@ -62,12 +68,12 @@ h1 {
   margin-bottom: 37px;
 }
 .recipe-text {
-  color: rgb(17, 184, 103);
+  color: #35495e;
   margin-left: 30px;
   padding-top: 30px;
 }
 .wrapper {
-  background: #36454f;
-  background: linear-gradient(135deg, #f5f5f5 30%, rgba(17, 184, 103, 0.5));
+  /* background: linear-gradient(135deg, #f5f5f5 30%, rgba(17, 184, 103, 0.5)); */
+  background: white;
 }
 </style>

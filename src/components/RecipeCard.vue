@@ -8,7 +8,13 @@
         @mouseleave="handleMouseLeave"
         ref="card"
       >
-        <div class="card" :style="cardStyle">
+        <div
+          data-aos="zoom-in-up"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-duration="1000"
+          class="card"
+          :style="cardStyle"
+        >
           <div class="card-bg" :style="{ backgroundImage: 'url(' + recipe.coverUrl + ')' }"></div>
           <div class="card-info">
             <slot name="header"
@@ -159,7 +165,7 @@ body {
   z-index: 2;
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: rgba(black, 0.66) 0 15px 30px 0,
+  box-shadow: rgba(black, 0.66) 0 7px 15px 0,
     // inset #333 0 0 0 5px,
       inset rgba(white, 0.5) 0 0 0 6px;
   transition: 1s $returnEasing;
