@@ -19,14 +19,17 @@ export default {};
 
 <style lang="scss" scoped>
 section {
-  padding: 90px 30px 0;
+  // padding: 90px 30px 30px;
   background: rgba(255, 195, 161, 0.705);
-  height: 70vh;
+  height: 45vw;
+  min-height: 400px;
 }
 .container {
   display: flex;
   align-content: center;
   align-items: center;
+  padding: 0 40px;
+  height: 80%;
 }
 h1 {
   font-style: normal;
@@ -37,15 +40,31 @@ h1 {
   letter-spacing: 0.03em;
   line-height: 1;
   // text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
-  margin-bottom: -70px;
+  padding: 30px 40px 0;
 }
 img {
   width: 35%;
-  height: 380px;
+  height: 35vw;
   border-radius: 50%;
 }
 p {
-  font-size: 25px;
+  font-size: clamp(1rem, 3vw, 1.7rem);
   flex: 2 1 auto;
+}
+@media (max-width: 490px) {
+  img {
+    display: none;
+  }
+  .container {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  p {
+    line-height: 1.5;
+    flex-grow: 1;
+    padding-top: 40px;
+  }
 }
 </style>
