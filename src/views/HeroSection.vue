@@ -26,7 +26,7 @@
       <div class="add-container">
         <h1>Add Your Recipe Now!</h1>
         <p>Share your grandmother's secret recipe for chicken soup or something...</p>
-        <img class="notebook-img" src="/images/cooking-recipe.png" alt="" />
+        <img class="notebook-img" src="../assets/Cooking-Recipe.png" alt="" />
         <router-link :to="{ name: 'CreateRecipe' }">
           <AddFoodButton :text="'ADD YOUR RECIPE!'" class="recipe-btn" />
         </router-link>
@@ -155,7 +155,7 @@ span {
   display: grid;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 55%;
   transform: translate(-50%, -50%) rotate(-6.5deg);
   width: 80vw;
   // padding: 4vw 0 0 14vw;
@@ -180,8 +180,10 @@ span {
 .add-recipe img {
   transform: rotate(3deg);
   border-radius: 20px;
-  height: 24vw;
+  height: 20vw;
+  min-height: 250px;
   grid-area: img;
+  align-self: start;
   // padding-top: 30px;
 }
 .recipe-btn {
@@ -224,7 +226,7 @@ span {
     font-size: 4rem;
   }
 }
-@media (max-width: 350px) {
+@media (max-width: 420px) {
   .notebook-img {
     display: none;
   }
@@ -242,12 +244,13 @@ span {
   .main-left {
     width: 80vw;
     margin: 0 auto;
+    margin-top: -100px;
   }
   .main-left p {
-    font-size: clamp(1rem, 2vw, 2rem);
+    font-size: clamp(1.5rem, 2vw, 2rem);
   }
   .main-left h1 {
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
   .btn1 {
     width: 40vw;

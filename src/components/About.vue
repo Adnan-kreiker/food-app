@@ -23,23 +23,24 @@ section {
   background: rgba(255, 195, 161, 0.705);
   height: 45vw;
   min-height: 400px;
+  position: relative;
+  padding-top: 30px;
 }
 .container {
   display: flex;
   align-content: center;
   align-items: center;
   padding: 0 40px;
-  height: 80%;
+  height: 60%;
 }
 h1 {
   font-style: normal;
-  // font-weight: bold;
   font-weight: 600;
   color: #353333;
+  // padding-top: -50px;
   font-size: 9vmin;
   letter-spacing: 0.03em;
   line-height: 1;
-  // text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
   padding: 30px 40px 0;
 }
 img {
@@ -50,6 +51,7 @@ img {
 p {
   font-size: clamp(1rem, 3vw, 1.7rem);
   flex: 2 1 auto;
+  line-height: 1.7;
 }
 @media (max-width: 490px) {
   img {
