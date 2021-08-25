@@ -51,7 +51,7 @@ export default {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
       this.reg_alert_msg = null;
-      this.color = 'rgb(1,253,250)';
+      this.color = '#374f6b';
       this.reg_alert_msg = '';
       this.text = 'Please wait!';
       this.cursor = 'wait';

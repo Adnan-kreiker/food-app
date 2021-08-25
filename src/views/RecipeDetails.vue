@@ -126,6 +126,7 @@ export default {
       this.$store.dispatch('AddNotification', notification);
     },
     handleEdit() {
+      this.edit = false;
       if (!this.modified_name) {
         this.modified_name = this.recipe.name;
       }

@@ -20,7 +20,7 @@ export default {};
 <style lang="scss" scoped>
 section {
   // padding: 90px 30px 30px;
-  background: rgba(255, 195, 161, 0.705);
+  background: rgba(233, 233, 217, 0.705);
   height: 45vw;
   min-height: 400px;
   position: relative;
@@ -38,7 +38,7 @@ h1 {
   font-weight: 600;
   color: #353333;
   // padding-top: -50px;
-  font-size: 9vmin;
+  font-size: clamp(1.3rem, 4vw, 4rem);
   letter-spacing: 0.03em;
   line-height: 1;
   padding: 30px 40px 0;
@@ -47,9 +47,10 @@ img {
   width: 35%;
   height: 35vw;
   border-radius: 50%;
+  object-fit: cover;
 }
 p {
-  font-size: clamp(1rem, 3vw, 1.7rem);
+  font-size: clamp(1rem, 2vw, 1.7rem);
   flex: 2 1 auto;
   line-height: 1.7;
 }
