@@ -1,5 +1,8 @@
 <template>
   <main>
+    <!-- <router-link to="/#recipe"> -->
+    <i @click="handleClick" class="fas fa-arrow-left fa-3x"></i>
+    <!-- </router-link> -->
     <div class="recipe-details">
       <div class="cover grid-pic ">
         <img v-if="!isLoading" :src="recipe.coverUrl" />
@@ -148,6 +151,14 @@ export default {
           console.error('Error writing document: ', error);
         });
     },
+    // handleClick() {
+    //   this.$nextTick(() => {
+    //     this.$router.push({ path: '/', hash: '#recipe' });
+    //   });
+    // },
+    handleClick() {
+      this.$router.push({ path: '/', hash: '#recipe' });
+    },
   },
 };
 </script>
@@ -171,7 +182,7 @@ export default {
   padding: 20px;
   background: white;
   transition: all ease 0.2s;
-  margin: 20px 40px;
+  // margin-top: 60px;
 }
 .recipe-name {
   border-bottom: 1px solid rgb(17, 184, 103);
@@ -183,8 +194,8 @@ export default {
   grid-area: 'details';
 }
 img {
-  width: 100%;
-  height: 100%;
+  width: 35vw;
+  height: 35vw;
   max-height: 450px;
   box-shadow: 1px 3px 4px rgba(50, 50, 50, 0.5);
 }
@@ -192,6 +203,9 @@ img:hover {
   box-shadow: 1px 6px 48px rgba(50, 50, 50, 0.05);
   transform: scale(1.02);
   transition: all ease 0.3s;
+}
+.fas {
+  color: #374f6b;
 }
 .recipe-info {
   line-height: 40px;
@@ -252,5 +266,27 @@ textarea {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
+}
+@media (max-width: 815px) {
+  .recipe-details {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'details'
+      'pic'
+      'btn-section';
+  }
+  img {
+    width: 80vw;
+    height: 80vw;
+  }
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+@media (max-width: 430px) {
+  button {
+    width: 60px;
+  }
 }
 </style>

@@ -33,7 +33,7 @@
       </div>
     </section>
     <section class="recipe-list" id="recipeSection">
-      <RecipesList />
+      <RecipesList id="recipes" />
     </section>
   </div>
 </template>

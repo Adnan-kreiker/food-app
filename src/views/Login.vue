@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="animate__animated animate__fadeIn">
     <vee-form :validation-schema="schema" @submit="login">
       <div class="input-container">
         <label>Email</label>
