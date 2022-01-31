@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="animate__animated animate__fadeIn">
     <!-- <router-link to="/#recipe"> -->
     <i @click="handleClick" class="fas fa-arrow-left fa-3x"></i>
     <!-- </router-link> -->

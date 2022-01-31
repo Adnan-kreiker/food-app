@@ -1,11 +1,12 @@
 /* eslint-disable consistent-return */
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../views/Login.vue';
 import HeroSection from '../views/HeroSection.vue';
-import Register from '../views/Register.vue';
-import CreateRecipe from '../views/CreateRecipe.vue';
-import RecipeDetails from '../views/RecipeDetails.vue';
 import store from '../store';
+
+const Login = () => import('../views/Login.vue');
+const Register = () => import('../views/Register.vue');
+const CreateRecipe = () => ('../views/CreateRecipe.vue');
+const RecipeDetails = () => ('../views/RecipeDetails.vue');
 
 const routes = [
   {
