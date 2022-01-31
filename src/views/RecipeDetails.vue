@@ -38,7 +38,7 @@
             @click.prevent="handleEdit"
             v-if="edit"
             :text="'Submit'"
-            :color="'rgb(17, 184, 103)'"
+            :color="'rgb(17, 184, 100)'"
           />
         </div>
       </div>
@@ -48,22 +48,22 @@
 </template>
 
 <script>
-import AppButton from '@/components/AppButton.vue';
-import { recipesCollection, auth, storage } from '../includes/firebase';
+import AppButton from "@/components/AppButton.vue";
+import { recipesCollection, auth, storage } from "../includes/firebase";
 
 export default {
   components: {
-    AppButton,
+    AppButton
   },
-  props: ['id'],
+  props: ["id"],
   data() {
     return {
       edit: false,
       recipe: {},
-      modified_name: '',
-      modified_description: '',
-      user: '',
-      isLoading: true,
+      modified_name: "",
+      modified_description: "",
+      user: "",
+      isLoading: true
     };
   },
   // async beforeRouteEnter(to, from, next) {
@@ -92,7 +92,7 @@ export default {
     const documentRef = recipesCollection.doc(this.$route.params.id);
     this.isLoading = true;
     documentRef.onSnapshot(
-      (doc) => {
+      doc => {
         if (doc.data()) {
           this.recipe = { ...doc.data(), id: doc.id };
           this.modified_description = doc.data().description;
@@ -100,10 +100,10 @@ export default {
           this.isLoading = false;
         }
       },
-      (err) => {
+      err => {
         console.log(err.message);
         this.recipe = null;
-      },
+      }
     );
   },
   mounted() {
@@ -112,7 +112,7 @@ export default {
   computed: {
     ownership() {
       return this.recipe && this.user && this.user.uid === this.recipe.userId;
-    },
+    }
   },
   methods: {
     async handleDelete() {
@@ -121,12 +121,12 @@ export default {
 
       await recipeRef.delete();
       await recipesCollection.doc(this.$route.params.id).delete();
-      this.$router.push({ path: '/', hash: '#recipe' });
+      this.$router.push({ path: "/", hash: "#recipe" });
       const notification = {
-        type: 'success',
-        text: 'Recipe Deleted !',
+        type: "success",
+        text: "Recipe Deleted !"
       };
-      this.$store.dispatch('AddNotification', notification);
+      this.$store.dispatch("AddNotification", notification);
     },
     handleEdit() {
       this.edit = false;
@@ -140,15 +140,15 @@ export default {
         .doc(this.$route.params.id)
         .update({
           name: this.modified_name,
-          description: this.modified_description,
+          description: this.modified_description
         })
         .then(() => {
-          console.log('Document successfully written!');
-          this.modified_name = '';
-          this.modified_description = '';
+          console.log("Document successfully written!");
+          this.modified_name = "";
+          this.modified_description = "";
         })
-        .catch((error) => {
-          console.error('Error writing document: ', error);
+        .catch(error => {
+          console.error("Error writing document: ", error);
         });
     },
     // handleClick() {
@@ -157,9 +157,9 @@ export default {
     //   });
     // },
     handleClick() {
-      this.$router.push({ path: '/', hash: '#recipe' });
-    },
-  },
+      this.$router.push({ path: "/", hash: "#recipe" });
+    }
+  }
 };
 </script>
 
@@ -176,9 +176,9 @@ export default {
   grid-gap: 30px;
   grid-template-columns: 40% 58%;
   grid-template-areas:
-    'pic details'
-    'pic details'
-    '. btn-section';
+    "pic details"
+    "pic details"
+    ". btn-section";
   padding: 20px;
   background: white;
   transition: all ease 0.2s;
@@ -191,7 +191,7 @@ export default {
   grid-area: pic;
 }
 .grid-details {
-  grid-area: 'details';
+  grid-area: "details";
 }
 img {
   width: 35vw;
@@ -271,9 +271,9 @@ textarea {
   .recipe-details {
     grid-template-columns: 1fr;
     grid-template-areas:
-      'details'
-      'pic'
-      'btn-section';
+      "details"
+      "pic"
+      "btn-section";
   }
   img {
     width: 80vw;
